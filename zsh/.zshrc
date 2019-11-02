@@ -55,6 +55,7 @@ ZSH_THEME=""
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  cp
   git
   docker
   zsh-autosuggestions
@@ -122,19 +123,3 @@ if [ -f '/Users/giladba/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/giladba
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/giladba/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/giladba/google-cloud-sdk/completion.zsh.inc'; fi
 
-# added by Anaconda3 2019.07 installer
-# >>> conda init >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(CONDA_REPORT_ERRORS=false '/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    \eval "$__conda_setup"
-else
-    if [ -f "/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/anaconda3/etc/profile.d/conda.sh"
-        CONDA_CHANGEPS1=false conda activate base
-    else
-        \export PATH="/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda init <<<
