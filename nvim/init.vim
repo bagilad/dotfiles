@@ -1,6 +1,10 @@
 " VIM-Plug {{{
 call plug#begin('~/.config/nvim/plugged')
 
+" Scala
+Plug 'derekwyatt/vim-scala'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " R
 Plug 'jalvesaq/Nvim-R'
 Plug 'vim-scripts/mru.vim'
@@ -11,10 +15,10 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdtree'
-"Plug 'vim-scripts/paredit.vim'
+Plug 'vim-scripts/paredit.vim'
 "Plug 'kien/rainbow_parentheses.vim'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
+"Plug 'guns/vim-sexp'
+"Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'luochen1990/rainbow'
 "Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
@@ -428,17 +432,20 @@ let r_indent_align_args = 0
 " indent 2 spaces instead of 4
 autocmd FileType r setlocal sw=2
 " }}}
+" Scala {{{
+au BufRead,BufNewFile *.sbt set filetype=scala
+
+" }}}
 " Paredit {{{
-let g:paredit_leader='\'
+let g:paredit_leader=','
 let g:paredit_smartjump=1
 let g:paredit_electric_return=1
 let g:paredit_matchlines=300
 let g:paredit_shortmaps=0
-let g:sexp_enable_insert_mode_mappings=0
 au FileType lfe call PareditInitBuffer()
 " }}}
 " vim-sexp {{{
-let maplocalleader=","
+"let maplocalleader=","
 " }}}
 " Cursorline {{{
 " Only show cursorline in the current window and in normal mode.
