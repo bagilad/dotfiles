@@ -114,7 +114,7 @@ alias vi=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-[ -f ~/.my-fzf.zsh ] && source ~/.my-fzf.zsh
+[ -f ~/.my-fzf.sh ] && source ~/.my-fzf.sh
 
 #export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 #export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
