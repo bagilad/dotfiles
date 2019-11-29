@@ -3,22 +3,21 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Scala
 Plug 'derekwyatt/vim-scala'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " R
 Plug 'jalvesaq/Nvim-R'
 Plug 'vim-scripts/mru.vim'
-Plug 'rking/ag.vim'
+"Plug 'rking/ag.vim'
 Plug 'sandeepcr529/Buffet.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'Shougo/deoplete.nvim'
 Plug 'zchee/deoplete-jedi'
 Plug 'nanotech/jellybeans.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/paredit.vim'
+"Plug 'vim-scripts/paredit.vim'
 "Plug 'kien/rainbow_parentheses.vim'
-"Plug 'guns/vim-sexp'
-"Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'luochen1990/rainbow'
 "Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
@@ -50,7 +49,6 @@ Plug 'humorless/vim-kibit'
 Plug 'chrisbra/csv.vim'
 " Plug 'majutsushi/tagbar'
 " Plug 'ludovicchabant/vim-gutentags'
-Plug 'derekwyatt/vim-scala'
 " FZF / Ctrlp for file navigation
 if executable('fzf')
   Plug '/usr/local/opt/fzf'
@@ -437,15 +435,15 @@ au BufRead,BufNewFile *.sbt set filetype=scala
 
 " }}}
 " Paredit {{{
-let g:paredit_leader=','
-let g:paredit_smartjump=1
-let g:paredit_electric_return=1
-let g:paredit_matchlines=300
-let g:paredit_shortmaps=0
-au FileType lfe call PareditInitBuffer()
+"let g:paredit_leader=','
+"let g:paredit_smartjump=1
+"let g:paredit_electric_return=1
+"let g:paredit_matchlines=300
+"let g:paredit_shortmaps=0
+"au FileType lfe call PareditInitBuffer()
 " }}}
 " vim-sexp {{{
-"let maplocalleader=","
+let maplocalleader=","
 " }}}
 " Cursorline {{{
 " Only show cursorline in the current window and in normal mode.
@@ -477,35 +475,6 @@ else
 nnoremap <leader>f :CtrlP<Space><cr>
 endif
 " }}}
-" CtrlP {{{
-"let g:ctrlp_map = '<leader>t'
-"let g:ctrlp_cmd = 'CtrlP'
-"let g:ctrlp_working_path_mode = 0
-"let g:ctrlp_match_window_reversed = 0
-"let g:ctrlp_custom_ignore = {
-""            \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-""            \ 'file': '\v\.(exe|so|dll|orig)$'
-""            \ }
-
-"if executable('ag')
-"  " Use ag over grep
-""  set grepprg=ag\ --nogroup\ --nocolor
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-""  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-
-  " " ag is fast enough that CtrlP doesn't need to cache
-""  let g:ctrlp_use_caching = 0
-"endif
-" if executable('rg')
-"   set grepprg=rg\ --color=never
-"   let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-" endif
-"
-"cnoreabbrev Ag Ag!
-
-"noremap <silent> qq :Bufferlist<CR>
-" }}}
 " Vim {{{
 
 " Copy/Paste/Cut
@@ -527,12 +496,6 @@ endif
 " Bufferline {{{
 let g:bufferline_echo = 0
 " }}}
-" Rainbow Parentheses {{{
-" au VimEnter * RainbowParenthesesToggle
-" au Syntax * RainbowParenthesesLoadRound
-" au Syntax * RainbowParenthesesLoadSquare
-" au Syntax * RainbowParenthesesLoadBraces
-"}}}
 " Rainbow Parentheses Improved {{{
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 " }}}

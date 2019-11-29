@@ -1,4 +1,4 @@
-export ZSH=/Users/giladba/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -113,13 +113,15 @@ export EDITOR="$VISUAL"
 alias vi=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f ~/.my-fzf.zsh ] && source ~/.my-fzf.zsh
+
 #export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 #export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 #bind -x '"\C-p": vim $(fzf);'
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/giladba/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/giladba/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/giladba/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/giladba/google-cloud-sdk/completion.zsh.inc'; fi
-
+if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
