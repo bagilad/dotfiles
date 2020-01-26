@@ -1,74 +1,62 @@
 " VIM-Plug {{{
 call plug#begin('~/.config/nvim/plugged')
-" Use release branch (Recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Scala
 Plug 'derekwyatt/vim-scala'
 " R
 Plug 'jalvesaq/Nvim-R'
-" GoLang
-Plug 'fatih/vim-go'
-" For Clojure {{{
-Plug 'guns/vim-clojure-highlight'
-Plug 'guns/vim-clojure-static'
-Plug 'thinca/vim-ft-clojure'
-Plug 'tpope/vim-fireplace'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-" kibit is a static code analyzer for Clojure
-" vim-kibit allows you to analyze the current opened file by running :Kibit
-Plug 'humorless/vim-kibit'
-" Plug 'clojure-vim/async-clj-omni'
-" }}}
-Plug 'elzr/vim-json'
-Plug 'chrisbra/csv.vim'
 " Provides an easy access to a list of recently opened/edited files.
 Plug 'vim-scripts/mru.vim'
+"Plug 'rking/ag.vim'
 " For listing and switching buffers, windows and tabs.
 Plug 'sandeepcr529/Buffet.vim'
-" Provides automatic closing of quotes, parenthesis, brackets, etc.
 Plug 'Raimondi/delimitMate'
+Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-jedi'
 Plug 'scrooloose/nerdtree'
+"Plug 'vim-scripts/paredit.vim'
+"Plug 'kien/rainbow_parentheses.vim'
+Plug 'guns/vim-sexp'
+Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'luochen1990/rainbow'
 " Theme {{{
 "Plug 'dracula/vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'morhetz/gruvbox'
 " For Airline
-" Plug 'jacoborus/tender.vim'
+Plug 'jacoborus/tender.vim'
 "Plug 'connorholyday/vim-snazzy'
 " }}}
-" Commenting
 Plug 'tomtom/tcomment_vim'
-" Required for tcomment_vim
 Plug 'tomtom/tlib_vim'
-" A vim library to interpret a file by function and cache file automatically.
-" Plug 'vim-scripts/vim-addon-mw-utils'
-" Plug 'vim-airline/vim-airline'
-Plug 'liuchengxu/eleline.vim'
-" Colored Parentheses
-Plug 'luochen1990/rainbow'
+Plug 'elzr/vim-json'
+Plug 'vim-scripts/vim-addon-mw-utils'
+Plug 'vim-airline/vim-airline'
+Plug 'guns/vim-clojure-highlight'
+Plug 'guns/vim-clojure-static'
+Plug 'tpope/vim-fireplace'
+Plug 'thinca/vim-ft-clojure'
 Plug 'tpope/vim-repeat'
-"Plug 'garbas/vim-snipmate'
-" Plug 'honza/vim-snippets'
+Plug 'garbas/vim-snipmate'
+Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
-" Mappings for toggling
 Plug 'tpope/vim-unimpaired'
-" A Git wrapper
 Plug 'tpope/vim-fugitive'
-" Adds file type icons to Vim plugins such as: NERDTree, vim-airline,...
 Plug 'ryanoasis/vim-devicons'
-" A simple plugin that helps to end certain structures automatically
-" Plug 'tpope/vim-endwise'
+Plug 'dense-analysis/ale'
+Plug 'tpope/vim-endwise'
 Plug 'bfredl/nvim-miniyank'
-" Jump to any location specified by two characters (e.g., sab)
+Plug 'fatih/vim-go'
 Plug 'justinmk/vim-sneak'
-" Provides fancy start screen
+Plug 'clojure-vim/async-clj-omni'
 Plug 'mhinz/vim-startify'
+Plug 'humorless/vim-kibit'
+Plug 'chrisbra/csv.vim'
+" Plug 'majutsushi/tagbar'
+" Plug 'ludovicchabant/vim-gutentags'
 " FZF for file navigation
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 call plug#end()
-
 " }}}
 " Basic options {{{
 let mapleader=","
@@ -117,13 +105,21 @@ set guioptions-=R
 set guioptions-=B
 set guioptions-=M
 set nobackup
-set nowritebackup
 set noswapfile
 set virtualedit=block
 set splitbelow
 set splitright
 set lsp=1
+"set relativenumber
 set timeoutlen=1000 ttimeoutlen=0
+" Better Completion
+set complete=.,w,b,u,t
+set completeopt=longest,menuone,preview
+if getcwd() == $HOME
+    if !empty($PROJECTS_DIR)
+        cd $PROJECTS_DIR
+    endif
+endif
 set noautoread
 set mouse=a
 " Treat dash separated words as a word text-object
@@ -143,135 +139,6 @@ let g:vim_json_syntax_conceal = 0
 " display a ruler at a specific line
 set colorcolumn=80
 " }}}
-
-" ======== Coc.nvim {{{
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-"inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Used to expand decorations in worksheets
-nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygnoup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-" }}}
-
 " Trailing whitespace  {{{
 " Only shown when not in insert mode so I don't go insane.
 
@@ -368,36 +235,37 @@ noremap <silent> qq :Bufferlist<CR>
 nmap ,d :b#<bar>bd#<CR>
 " }}}
 " Colors and fonts {{{
+
 syntax on
 set termguicolors
-" let g:gruvbox_italic=1
-" colorscheme gruvbox
+let g:gruvbox_italic=1
+colorscheme gruvbox
 
-let g:jellybeans_use_gui_italics = 0
-let g:jellybeans_overrides = {
-           \    'MatchParen': {'guifg': 'ccff04',
-           \                   'guibg': 'None',
-           \                   'gui': 'BOLD', 
-           \                   'cterm': 'BOLD', 
-           \                   'ctermfg': '226',
-           \                   'ctermbg': 'None',
-           \                   'attr': 'bold'},
-           \   'Search': {     'gui': 'UNDERLINE', 
-           \                   'cterm': 'UNDERLINE', 
-           \                   'guifg': '95BDAE',
-           \                   'guibg': '603D36',
-           \                   'attr': 'underline'}
-           \}
+"let g:jellybeans_use_gui_italics = 0
+"let g:jellybeans_overrides = {
+""            \    'MatchParen': {'guifg': 'ccff04',
+""            \                   'guibg': 'None',
+""            \                   'gui': 'BOLD', 
+""            \                   'cterm': 'BOLD', 
+""            \                   'ctermfg': '226',
+""            \                   'ctermbg': 'None',
+""            \                   'attr': 'bold'},
+""            \   'Search': {     'gui': 'UNDERLINE', 
+""            \                   'cterm': 'UNDERLINE', 
+""            \                   'guifg': '95BDAE',
+""            \                   'guibg': '603D36',
+""            \                   'attr': 'underline'}
+""            \}
 
-set background=dark
-colorscheme jellybeans
+"set background=dark
+"colorscheme jellybeans
 
 " set gfn=InconsolataGo\ Nerd\ Font:h19
 
-" " Airline
-" let g:airline_theme = 'tender'
+" Airline
+let g:airline_theme = 'tender'
 let g:airline_powerline_fonts = 1
-" let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#whitespace#enabled = 0
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -425,9 +293,37 @@ endfunction
 nmap <leader><leader>o :call NTImprovedToggle()<CR>
 
 " }}}
+" ALE {{{
+"let g:ale_open_list=1
+"let g:ale_lint_on_insert_leave=1
+"let g:ale_lint_on_text_changed='normal'
+let g:ale_python_flake8_args = '--ignore=E --select=E128'
+let g:ale_linters = {
+\   'clojure': ['joker'],
+\   'scala': ['scalac'],
+\}
+"let g:ale_linters_explicit = 1
+
+" }}}
+" deoplete {{{
+let g:acp_enableAtStartup = 0
+let g:deoplete#enable_at_startup = 1 
+let g:necoghc_enable_detailed_browse = 1
+let g:deoplete#disable_auto_complete=0
+let g:deoplete#auto_completion_start_length=3
+let g:haskellmode_completion_ghc = 1
+autocmd CompleteDone * pclose
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:deoplete#keyword_patterns = {}
+let g:deoplete#keyword_patterns.clojure = '[\w!$%&*+/:<=>?@\^_~\-\.#]*'
+" }}}
 " Folding {{{
 
 set foldlevelstart=0
+
+" Space to toggle folds.
+nnoremap <Space> za
+vnoremap <Space> za
 
 function! MyFoldText() " {{{
     let line = getline(v:foldstart)
@@ -509,6 +405,13 @@ au FileType clojure let loaded_delimitMate = 0
 autocmd FileType clojure nnoremap <buffer> <silent> <leader>rx :Eval (do (require 'clojure.tools.namespace.repl) (clojure.tools.namespace.repl/set-refresh-dirs "src/clj" "src/cljc") (clojure.tools.namespace.repl/refresh))<cr>
 
 " }}}
+" GoLang      {{{
+
+autocmd FileType go nnoremap <buffer> <silent> ]<C-d> :GoDef<cr>
+autocmd FileType go nnoremap <buffer> <silent> K :GoDoc<cr>
+let g:go_version_warning=0
+
+" }}}
 " R {{{
 " For more information, see :help ft-r-indent
 let r_indent_align_args = 0
@@ -518,6 +421,14 @@ autocmd FileType r setlocal sw=2
 " Scala {{{
 au BufRead,BufNewFile *.sbt set filetype=scala
 
+" }}}
+" Paredit {{{
+"let g:paredit_leader=','
+"let g:paredit_smartjump=1
+"let g:paredit_electric_return=1
+"let g:paredit_matchlines=300
+"let g:paredit_shortmaps=0
+"au FileType lfe call PareditInitBuffer()
 " }}}
 " vim-sexp {{{
 let maplocalleader=","
@@ -531,6 +442,9 @@ augroup cline
     au WinEnter,InsertLeave * set cursorline
 augroup END
 
+" }}}
+" Gutentags {{{
+" set statusline+=%{gutentags#statusline()}
 " }}}
 " FZF {{{
 " see https://bluz71.github.io/2018/12/04/fuzzy-finding-in-vim-with-fzf.html
@@ -615,11 +529,11 @@ let g:webdevicons_enable_nerdtree = 1
 " adding the custom source to unite 
 let g:webdevicons_enable_unite = 1
 
-" " adding to vim-airline's tabline 
-" let g:webdevicons_enable_airline_tabline = 1
-"
-" " adding to vim-airline's statusline 
-" let g:webdevicons_enable_airline_statusline = 1
+" adding to vim-airline's tabline 
+let g:webdevicons_enable_airline_tabline = 1
+
+" adding to vim-airline's statusline 
+let g:webdevicons_enable_airline_statusline = 1
 
 " ctrlp glyphs
 let g:webdevicons_enable_ctrlp = 1
