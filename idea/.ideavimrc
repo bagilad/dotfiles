@@ -1,0 +1,52 @@
+" Basic options {{{
+let mapleader=","
+set scrolloff=3
+set showmode
+set showcmd
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set number
+set relativenumber
+set gdefault
+set timeoutlen=1000 ttimeoutlen=0
+" Treat dash separated words as a word text-object
+set iskeyword+=-
+set clipboard+=unnamed
+set visualbell
+" }}}
+
+
+" Key Mapping {{{
+nnoremap Y y$
+nnoremap <leader><space> :noh<cr>
+nnoremap / /\v
+vnoremap / /\v
+nnoremap j gj
+nnoremap k gk
+" nnoremap <C-a> ^
+" nnoremap <C-e> $
+nnoremap <up> g<up>
+nnoremap <down> g<down>
+"
+"Show hidden chars
+nmap <C-h> :set list!<CR>
+
+" Clean trailing whitespace
+nnoremap <leader>cw mz:%s/\s\+$//<cr>:let @/=''<cr>`z
+" Keep the cursor in place while joining lines
+nnoremap J mzJ`z
+" Made D behave
+nnoremap D d$
+nmap gV `[v`]
+" Don't move on *
+nnoremap <silent> * :let stay_star_view = winsaveview()<cr>*<c-o>:call winrestview(stay_star_view)<cr>
+" Keep search matches in the middle of the window.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+" Same when jumping around
+nnoremap g; g;zz
+nnoremap g, g,zz
+nnoremap <c-o> <c-o>zz
+" }}}

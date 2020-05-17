@@ -21,12 +21,12 @@ build
 .tox
 .*.sw[nop]
 **/.idea/*
-.metals/*
-.bloop/*
+**/.metals/*
+**/.bloop/*
+.Rhistory
 target/
 .lein*
 .ropeproject/*
-/target
 /classes
 /checkouts
 pom.xml.asc
@@ -40,3 +40,4 @@ nvim/plugged/**
 tags
 _data/*
 *.iml
+gilad-private/**

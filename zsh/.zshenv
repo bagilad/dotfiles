@@ -17,17 +17,19 @@ docker-ssh() {
 }
 
 
-# GoLang
-export GOROOT="/usr/local/go"
-export PATH=$PATH:"$GOROOT/bin"
-export GOPATH="/Users/giladba/go"
-export PATH=$PATH:"$GOPATH/bin"
-
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="/opt/apache-maven-3.5.4/bin:$PATH"
 export PATH="$HOME/bats/bin:$PATH"
 
-dsexport GITHUB_TOKEN="df43ffee9fe02ad6d3501387e556a3be16fbe551"
+export SPARK_LOCAL_IP="127.0.0.1"
+
+export PROJECTS_DIR="$HOME/projects"
+
+# GoLang
+export GOROOT="/usr/local/go"
+export PATH=$PATH:"$GOROOT/bin"
+export GOPATH="$PROJECTS_DIR/go"
+export PATH=$PATH:"$GOPATH/bin"
 
 export ZEPPELIN_VERSION=0.8.1
 export ZEPPELIN_HOME=/usr/local/Cellar/apache-zeppelin/0.8.1/libexec
@@ -35,6 +37,9 @@ export ZEPPELIN_CONF_DIR=$ZEPPELIN_HOME/conf
 export PATH=$ZEPPELIN_HOME/bin:$PATH
 export PATH=/usr/local/opt/libxml2/bin:$PATH
 export PKG_CONFIG_PATH=/usr/local/opt/libxml2/lib/pkgconfig
+
+# mysql-client
+export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 
 # https://discourse.brew.sh/t/failed-to-set-locale-category-lc-numeric-to-en-ru/5092/8
 export LC_ALL=en_US.UTF-8
