@@ -91,12 +91,6 @@ prompt pure
 # for zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-#export AWS_ACCESS_KEY="AKIAJFNDS2JNUMAPBEMQ"
-#export AWS_SECRET_KEY="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"
-export nameappsflyer=giladba
-export TOKEN=giladba-7e6423a8fe94dfa463bebf4bb07e86342e03c8ab
-#source $HOME/.ssh/source-creation-vault.sh
-
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
