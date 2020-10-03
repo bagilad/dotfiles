@@ -18,7 +18,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'clojure-vim/vim-jack-in'
 " Only in Neovim:
 Plug 'radenling/vim-dispatch-neovim'
-Plug 'Olical/conjure', {'tag': 'v4.1.0'}
+Plug 'Olical/conjure', {'tag': 'v4.5.0'}
 " Plug 'guns/vim-clojure-highlight'
 " Plug 'guns/vim-clojure-static'
 " Plug 'thinca/vim-ft-clojure'
@@ -154,9 +154,15 @@ set colorcolumn=80
 nnoremap / /\v
 vnoremap / /\v
 nnoremap <leader><space> :nohlsearch<CR> 
+" Open init.vim in vertical split
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" Source init.vim
+nnoremap <leader>sv :source $MYVIMRC<cr>
 " Uppercase current word in insert mode
 inoremap <c-u> <esc>viwUea
-" Use Escape tp exit terminal mode
+" Write the letter λ 
+inoremap <c-l> <c-k>l*
+" Use Escape to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
 nnoremap <leader>b :Bufferlist<CR>
 " }}}
@@ -226,6 +232,10 @@ endif
 "let g:ale_open_list=1
 "let g:ale_lint_on_insert_leave=1
 "let g:ale_lint_on_text_changed='normal'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+"let g:ale_lint_on_text_changed = 'never'
 let g:ale_python_flake8_args = '--ignore=E --select=E128'
 let g:ale_linters = {
 \   'clojure': ['clj-kondo'],
@@ -302,7 +312,12 @@ let g:airline_powerline_fonts = 1
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " }}}
 
-"" R {{{
+" Yaml {{{
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+"}}}
+
+
+" R {{{
 " For more information, see :help ft-r-indent
 let r_indent_align_args = 0
 " indent 2 spaces instead of 4

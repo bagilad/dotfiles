@@ -1,1 +1,2 @@
-export PROJECTS_DIR="$HOME/projects"
+
+export PATH="$HOME/.cargo/bin:$PATH"
