@@ -21,11 +21,15 @@
 ;; Evil
 ;;=====================================================
 (maybe-install 'evil)
+(maybe-install 'evil-collection)
+(setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+(setq evil-want-keybinding nil)
+
 (require 'evil)
 (evil-mode 1)
+(when (require 'evil-collection nil t)
+  (evil-collection-init))
 
-(maybe-install 'evil-collection)
-(evil-collectioninit)
 ;;=====================================================
 ;; Key bindings
 ;;=====================================================
