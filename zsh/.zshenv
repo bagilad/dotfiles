@@ -1,8 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/local/bin:/usr/local/bin:$PATH
 
-export JAVA_HOME="`/usr/libexec/java_home -v 1.8`"
-
 export DEV=true
 
 docker-ssh() {
@@ -37,6 +35,9 @@ export ZEPPELIN_CONF_DIR=$ZEPPELIN_HOME/conf
 export PATH=$ZEPPELIN_HOME/bin:$PATH
 export PATH=/usr/local/opt/libxml2/bin:$PATH
 export PKG_CONFIG_PATH=/usr/local/opt/libxml2/lib/pkgconfig
+
+# Python
+export PATH=$HOME/Library/Python/2.7/bin:$PATH
 
 # mysql-client
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"

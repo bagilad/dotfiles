@@ -16,3 +16,7 @@ unset __conda_setup
 
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/giladba/.sdkman"
+[[ -s "/Users/giladba/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/giladba/.sdkman/bin/sdkman-init.sh"
