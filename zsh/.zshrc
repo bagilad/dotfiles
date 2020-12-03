@@ -27,10 +27,11 @@ bindkey -v
 export KEYTIMEOUT=1
 
 alias c="clear"
-export VISUAL="nvim"
+export VISUAL="emacsclient -c"
 export EDITOR="$VISUAL"
 alias vi=nvim
 alias vim=nvim
+alias ec="emacsclient -c -n"
 alias spark-shell='spark-shell --conf spark.driver.extraJavaOptions="-Dscala.color"'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
