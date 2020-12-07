@@ -42,6 +42,9 @@ export PATH=$HOME/Library/Python/2.7/bin:$PATH
 # mysql-client
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 
+# Doom emaca
+export PATH="$HOME/.emacs.d/bin:$PATH"
+
 # https://discourse.brew.sh/t/failed-to-set-locale-category-lc-numeric-to-en-ru/5092/8
 export LC_ALL=en_US.UTF-8
 
