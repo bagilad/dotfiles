@@ -22,10 +22,6 @@ source $ZSH/oh-my-zsh.sh
 # for zsh-completions
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-# vi mode
-bindkey -v
-export KEYTIMEOUT=1
-
 alias c="clear"
 export VISUAL="emacsclient -c"
 export EDITOR="$VISUAL"
