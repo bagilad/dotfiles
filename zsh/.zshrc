@@ -68,3 +68,7 @@ unset __conda_setup
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/giladba/.sdkman"
 [[ -s "/Users/giladba/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/giladba/.sdkman/bin/sdkman-init.sh"
+
+alias ssh="/Users/giladba/.af-ssh/update.sh; ssh $@"
+
+alias af-scp="/Users/giladba/.af-ssh/af_scp.sh $@"
