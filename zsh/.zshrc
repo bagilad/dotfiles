@@ -23,7 +23,7 @@ source $ZSH/oh-my-zsh.sh
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 alias c="clear"
-export VISUAL="emacsclient -c"
+export VISUAL="nvim"
 export EDITOR="$VISUAL"
 alias vi=nvim
 alias vim=nvim
