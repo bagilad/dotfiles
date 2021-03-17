@@ -18,7 +18,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'clojure-vim/vim-jack-in'
 " Only in Neovim:
 Plug 'radenling/vim-dispatch-neovim'
-Plug 'Olical/conjure', {'tag': 'v4.5.0'}
+Plug 'Olical/conjure', {'tag': 'v4.16.0'}
 " Plug 'guns/vim-clojure-highlight'
 " Plug 'guns/vim-clojure-static'
 " Plug 'thinca/vim-ft-clojure'
@@ -59,7 +59,7 @@ Plug 'mhinz/vim-startify'
 " See https://oli.me.uk/getting-started-with-clojure-neovim-and-conjure-in-minutes/
 Plug 'easymotion/vim-easymotion'
 Plug 'ncm2/float-preview.nvim'
-Plug 'jiangmiao/auto-pairs', { 'tag': 'v2.0.0' }
+Plug 'jiangmiao/auto-pairs'
 Plug 'dense-analysis/ale'
 Plug 'liuchengxu/vim-clap'
 
