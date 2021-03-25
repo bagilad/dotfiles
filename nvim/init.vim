@@ -25,10 +25,6 @@ Plug 'Olical/conjure', {'tag': 'v4.16.0'}
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " }}}
-" Provides an easy access to a list of recently opened/edited files.
-Plug 'vim-scripts/mru.vim'
-" For listing and switching buffers, windows and tabs.
-Plug 'sandeepcr529/Buffet.vim'
 " Provides automatic closing of quotes, parenthesis, brackets, etc.
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/nerdtree'
@@ -164,7 +160,6 @@ inoremap <c-u> <esc>viwUea
 inoremap <c-l> <c-k>l*
 " Use Escape to exit terminal mode
 tnoremap <Esc> <C-\><C-n>
-nnoremap <leader>b :Bufferlist<CR>
 " }}}
 
 " vim-clap {{{
