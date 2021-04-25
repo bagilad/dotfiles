@@ -41,3 +41,4 @@ tags
 _data/*
 *.iml
 gilad-private/**
+env/**

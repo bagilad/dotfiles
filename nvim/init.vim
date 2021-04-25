@@ -18,7 +18,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'clojure-vim/vim-jack-in'
 " Only in Neovim:
 Plug 'radenling/vim-dispatch-neovim'
-Plug 'Olical/conjure', {'tag': 'v4.16.0'}
+Plug 'Olical/conjure', {'tag': 'v4.18.0'}
 " Plug 'guns/vim-clojure-highlight'
 " Plug 'guns/vim-clojure-static'
 " Plug 'thinca/vim-ft-clojure'
