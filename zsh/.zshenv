@@ -23,6 +23,9 @@ export SPARK_LOCAL_IP="127.0.0.1"
 
 export PROJECTS_DIR="$HOME/projects"
 
+# Vim
+export VIMCONFIG="$HOME/.config/nvim"
+
 # GoLang
 export GOROOT="/usr/local/go"
 export PATH=$PATH:"$GOROOT/bin"
