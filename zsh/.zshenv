@@ -52,3 +52,6 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 export LC_ALL=en_US.UTF-8
 
 source "$HOME/.cargo/env"
+
+# Miniconda
+export PATH="$HOME/opt/miniconda3/bin:$PATH"
