@@ -3,6 +3,7 @@ if !exists('g:vscode')
     call plug#begin('~/.config/nvim/plugged')
     " lspconfig
     Plug 'neovim/nvim-lspconfig'
+    Plug 'simrat39/rust-tools.nvim'
     " nvim-cmp {{{
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
@@ -280,6 +281,12 @@ for _, lsp in ipairs(servers) do
             }
         }
 end
+EOF
+" }}}
+
+" rust-tools {{{
+lua <<EOF
+ require('rust-tools').setup({})
 EOF
 " }}}
 
