@@ -24,6 +24,7 @@ if !exists('g:vscode')
     " Plug 'dcampos/nvim-snippy'
     " Plug 'dcampos/cmp-snippy'
     " }}}
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
     " Scala
     Plug 'derekwyatt/vim-scala'
     " R
@@ -191,7 +192,6 @@ if !exists('g:vscode')
 endif
 " }}}
 
-
 " nvim-cmp {{{
 set completeopt=menu,menuone,noselect
 
@@ -214,6 +214,7 @@ lua <<EOF
       ['<C-Space>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.close(),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
+      ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
@@ -269,9 +270,23 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- Enable underline, use default values
+    underline = true,
+    -- disable virtual text
+    virtual_text = false,
+    -- show signs
+    signs = true,
+    -- delay update diagnostics
+    update_in_insert = false,
+    -- display_diagnostic_autocmds = { "InsertLeave" },
+    }
+)
+
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'rust_analyzer', 'r_language_server' }
+local servers = { 'pyright', 'r_language_server' }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -281,13 +296,63 @@ for _, lsp in ipairs(servers) do
             }
         }
 end
+
+local rust_opts = {
+    tools = { -- rust-tools options
+        autoSetHints = true,
+        hover_with_actions = true,
+        inlay_hints = {
+            show_parameter_hints = false,
+            parameter_hints_prefix = "",
+            other_hints_prefix = "",
+        },
+    },
+
+    -- all the opts to send to nvim-lspconfig
+    -- these override the defaults set by rust-tools.nvim
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+    server = {
+        on_attach = on_attach,
+        settings = {
+            -- to enable rust-analyzer settings visit:
+            -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+            ["rust-analyzer"] = {
+                -- enable clippy on save
+                checkOnSave = {
+                    command = "clippy"
+                },
+            }
+        }
+    },
+}
+
+require('rust-tools').setup(rust_opts)
+
 EOF
 " }}}
 
-" rust-tools {{{
+" nvim-treesitter {{{
 lua <<EOF
- require('rust-tools').setup({})
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    -- disable = { "c", "rust" },  -- list of language that will be disabled
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+  indent = {
+    enable = true,
+  },
+}
 EOF
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 " }}}
 
 " vim-clap {{{
