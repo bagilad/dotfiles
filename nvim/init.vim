@@ -4,6 +4,12 @@ if !exists('g:vscode')
     " lspconfig
     Plug 'neovim/nvim-lspconfig'
     Plug 'simrat39/rust-tools.nvim'
+    " The following 3 are mentioned as optional dependencies for rust-tools
+    Plug 'nvim-lua/popup.nvim'
+    Plug 'nvim-lua/plenary.nvim'
+    " An alternative to vim-clap
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
     " nvim-cmp {{{
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
@@ -79,7 +85,7 @@ if !exists('g:vscode')
     Plug 'easymotion/vim-easymotion'
     Plug 'ncm2/float-preview.nvim'
     Plug 'jiangmiao/auto-pairs'
-    Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
+    " Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 
     call plug#end()
 endif
@@ -355,24 +361,31 @@ set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 " }}}
 
-" vim-clap {{{
-if !exists('g:vscode')
-    let g:clap_provider_grep_delay = 50
-    let g:clap_provider_grep_opts = '-H --no-heading --vimgrep --smart-case --hidden -g "!.git/"'
+" telescope {{{
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+"}}}
 
-    nnoremap <space>* :Clap grep ++query=<cword><cr>
-    nnoremap <leader>fg :Clap grep<cr>
-    nnoremap <leader>ff :Clap files --hidden<cr>
-    nnoremap <leader>fb :Clap buffers<cr>
-    nnoremap <leader>fw :Clap windows<cr>
-    nnoremap <leader>fr :Clap history<cr>
-    nnoremap <leader>fh :Clap command_history<cr>
-    nnoremap <leader>fj :Clap jumps<cr>
-    nnoremap <leader>fl :Clap blines<cr>
-    nnoremap <leader>fL :Clap lines<cr>
-    nnoremap <leader>ft :Clap filetypes<cr>
-    nnoremap <leader>fm :Clap marks<cr>
-endif
+" vim-clap {{{
+" if !exists('g:vscode')
+"     let g:clap_provider_grep_delay = 50
+"     let g:clap_provider_grep_opts = '-H --no-heading --vimgrep --smart-case --hidden -g "!.git/"'
+"
+"     nnoremap <space>* :Clap grep ++query=<cword><cr>
+"     nnoremap <leader>fg :Clap grep<cr>
+"     nnoremap <leader>ff :Clap files --hidden<cr>
+"     nnoremap <leader>fb :Clap buffers<cr>
+"     nnoremap <leader>fw :Clap windows<cr>
+"     nnoremap <leader>fr :Clap history<cr>
+"     nnoremap <leader>fh :Clap command_history<cr>
+"     nnoremap <leader>fj :Clap jumps<cr>
+"     nnoremap <leader>fl :Clap blines<cr>
+"     nnoremap <leader>fL :Clap lines<cr>
+"     nnoremap <leader>ft :Clap filetypes<cr>
+"     nnoremap <leader>fm :Clap marks<cr>
+" endif
 " }}}
 
 " NerdTree {{{
