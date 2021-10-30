@@ -55,3 +55,6 @@ source "$HOME/.cargo/env"
 
 # Miniconda
 export PATH="$HOME/opt/miniconda3/bin:$PATH"
+
+# For tmux
+export TERM=xterm-256color
