@@ -3,7 +3,10 @@ lua require('plugins')
 "" Basic options {{{
 " let g:python_host_prog='/usr/bin/python'
 " let g:python3_host_prog='/usr/local/bin/python3'
-set termguicolors
+let g:tex_flavor = 'latex'
+if has('termguicolors')
+    set termguicolors
+endif
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -162,7 +165,7 @@ vim.lsp.diagnostic.on_publish_diagnostics, {
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'r_language_server' }
+local servers = { 'pyright', 'r_language_server', 'clojure_lsp', 'texlab' }
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
@@ -213,7 +216,7 @@ require'nvim-treesitter.configs'.setup {
 ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
 -- ignore_install = { "javascript" }, -- List of parsers to ignore installing
 highlight = {
-enable = true,              -- false will disable the whole extension
+enable = true, -- false will disable the whole extension
 -- disable = { "c", "rust" },  -- list of language that will be disabled
 
 -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -229,6 +232,32 @@ additional_vim_regex_highlighting = false,
 EOF
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
+" }}}
+
+" nvim-autopairs {{{
+lua <<EOF
+local Rule = require('nvim-autopairs.rule')
+local npairs = require("nvim-autopairs")
+
+npairs.setup({
+    check_ts = true,
+    ts_config = {
+        lua = {'string'},-- it will not add a pair on that treesitter node
+        javascript = {'template_string'},
+        java = false,-- don't check treesitter on java
+    }
+})
+
+local ts_conds = require('nvim-autopairs.ts-conds')
+
+-- press % => %% is only inside comment or string
+npairs.add_rules({
+  Rule("%", "%", "lua")
+    :with_pair(ts_conds.is_ts_node({'string','comment'})),
+  Rule("$", "$", "lua")
+    :with_pair(ts_conds.is_not_ts_node({'function'}))
+})
+EOF
 " }}}
 
 " gitsigns {{{
@@ -292,8 +321,12 @@ set wildignore+=lib
 " }}}
 
 " Colors and fonts {{{
-let g:gruvbox_italic=1
+" set background=dark
+set background=dark
 colorscheme gruvbox
+let g:gruvbox_italic = 1
+" let g:gruvbox_material_enable_italic = 1
+" colorscheme gruvbox-material
 lua << EOF
 require'lualine'.setup {
     options = {theme = 'gruvbox'}

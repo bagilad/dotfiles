@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/local/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 export DEV=true
 
@@ -58,3 +58,5 @@ export PATH="$HOME/opt/miniconda3/bin:$PATH"
 
 # For tmux
 export TERM=xterm-256color
+
+export AWS_PROFILE=gilad

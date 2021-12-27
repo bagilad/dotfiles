@@ -23,10 +23,10 @@ source $ZSH/oh-my-zsh.sh
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 alias c="clear"
-export VISUAL="nvim"
+export VISUAL="lvim"
 export EDITOR="$VISUAL"
-alias vi=nvim
-alias vim=nvim
+alias vi=lvim
+alias vim=lvim
 alias ec="emacsclient -c -n"
 alias spark-shell='spark-shell --conf spark.driver.extraJavaOptions="-Dscala.color"'
 
@@ -53,3 +53,24 @@ export SDKMAN_DIR="/Users/giladba/.sdkman"
 alias ssh="/Users/giladba/.af-ssh/update.sh; ssh $@"
 
 alias af-scp="/Users/giladba/.af-ssh/af_scp.sh $@"
+
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/projects
+source /usr/local/bin/virtualenvwrapper.sh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/giladba/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/giladba/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/giladba/opt/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/giladba/opt/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

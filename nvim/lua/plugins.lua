@@ -45,6 +45,8 @@ return require('packer').startup(function()
         run = ':TSUpdate'
     }
 
+    use 'windwp/nvim-autopairs'
+
     use {
         'lewis6991/gitsigns.nvim',
         requires = {
@@ -59,7 +61,10 @@ return require('packer').startup(function()
     use 'tpope/vim-sexp-mappings-for-regular-people'
     -- End: for Clojure
 
-    use 'morhetz/gruvbox'
+    use 'sainnhe/gruvbox-material'
+    use {"ellisonleao/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
+    use 'monsonjeremy/onedark.nvim'
+    use 'folke/tokyonight.nvim'
     use 'tpope/vim-repeat'
     use 'tpope/vim-surround'
     use 'b3nj5m1n/kommentary'
