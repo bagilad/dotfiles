@@ -42,3 +42,4 @@ _data/*
 *.iml
 gilad-private/**
 env/**
+.python-version

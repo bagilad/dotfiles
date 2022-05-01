@@ -54,23 +54,10 @@ alias ssh="/Users/giladba/.af-ssh/update.sh; ssh $@"
 
 alias af-scp="/Users/giladba/.af-ssh/af_scp.sh $@"
 
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/projects
-source /usr/local/bin/virtualenvwrapper.sh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/giladba/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/giladba/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/giladba/opt/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/giladba/opt/miniconda3/bin:$PATH"
-    fi
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
 fi
-unset __conda_setup
-# <<< conda initialize <<<
-
+if which pyenv-virtualenv-init > /dev/null; then
+  eval "$(pyenv virtualenv-init -)"
+fi
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
