@@ -17,6 +17,8 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+# see https://github.com/ohmyzsh/ohmyzsh/issues/6835
+ZSH_DISABLE_COMPFIX=true
 source $ZSH/oh-my-zsh.sh
 
 # for zsh-completions
@@ -29,6 +31,7 @@ alias vi=lvim
 alias vim=lvim
 alias ec="emacsclient -c -n"
 alias spark-shell='spark-shell --conf spark.driver.extraJavaOptions="-Dscala.color"'
+alias brew86='arch --x86_64 /usr/local/Homebrew/bin/brew'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.my-fzf.sh ] && source ~/.my-fzf.sh
@@ -61,3 +64,4 @@ if which pyenv-virtualenv-init > /dev/null; then
   eval "$(pyenv virtualenv-init -)"
 fi
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
