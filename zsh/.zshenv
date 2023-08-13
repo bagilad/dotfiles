@@ -51,4 +51,5 @@ export LC_ALL=en_US.UTF-8
 ## Miniconda
 #export PATH="$HOME/opt/miniconda3/bin:$PATH"
 
-export AWS_PROFILE=gilad
+export AWS_PROFILE=RND-Production_Developer
+. "$HOME/.cargo/env"

@@ -1,0 +1,33 @@
+{
+    "editor.fontSize": 14,
+    "editor.insertSpaces": true,
+    "editor.rulers": [
+        120
+    ],
+    "editor.accessibilitySupport": "off",
+    "files.autoSave": "afterDelay",
+    "workbench.settings.editor": "json",
+    "gitlens.currentLine.enabled": false,
+    "python.envFile": "${workspaceFolder}/.env",
+    "editor.minimap.enabled": false,
+    "workbench.iconTheme": "vscode-icons",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "gitlens.views.searchAndCompare.files.layout": "tree",
+    "git.openRepositoryInParentFolders": "always",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "rust-analyzer.check.command": "clippy",
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length=120"
+    ],
+    "vsicons.dontShowNewVersionMessage": true,
+    "workbench.colorTheme": "Gruvbox Material Dark",
+    "terminal.integrated.env.osx": {
+        "FIG_NEW_SESSION": "1"
+    },
+}
