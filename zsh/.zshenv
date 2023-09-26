@@ -4,3 +4,4 @@ export PROJECTS_DIR="$HOME/projects"
 # Vim
 # export VIMCONFIG="$HOME/.config/nvim"
 export LC_ALL=en_US.UTF-8
+. "$HOME/.cargo/env"

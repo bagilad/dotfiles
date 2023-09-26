@@ -27,6 +27,9 @@ export VIMCONFIG="$HOME/.config/nvim"
 export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
+eval "$(rbenv init - zsh)"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"
+
 alias c="clear"
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
