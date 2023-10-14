@@ -10,6 +10,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   cp
   git
+  poetry
   docker
   zsh-autosuggestions
   zsh-syntax-highlighting
