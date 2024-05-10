@@ -1,9 +1,11 @@
+-- When adding a line below comment, don't start it as a comment
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   callback = function()
     vim.cmd "set formatoptions-=cro"
   end,
 })
 
+-- Close this files by pressing q
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = {
     "netrw",
@@ -34,12 +36,14 @@ vim.api.nvim_create_autocmd({ "CmdWinEnter" }, {
   end,
 })
 
+-- Keeping consistent sizes for buffers
 vim.api.nvim_create_autocmd({ "VimResized" }, {
   callback = function()
     vim.cmd "tabdo wincmd ="
   end,
 })
 
+-- Getting all new updates when entering something
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   pattern = { "*" },
   callback = function()
@@ -47,6 +51,7 @@ vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
   end,
 })
 
+-- Highlight feedback when yanking lines
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()
     vim.highlight.on_yank { higroup = "Visual", timeout = 40 }

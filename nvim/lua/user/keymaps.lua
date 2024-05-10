@@ -11,11 +11,11 @@ vim.g.maplocalleader = " "
 keymap("n", "<C-i>", "<C-i>", opts)
 
 -- Better window navigation
-keymap("n", "<m-h>", "<C-w>h", opts)
-keymap("n", "<m-j>", "<C-w>j", opts)
-keymap("n", "<m-k>", "<C-w>k", opts)
-keymap("n", "<m-l>", "<C-w>l", opts)
-keymap("n", "<m-tab>", "<c-6>", opts)
+keymap("n", "<c-h>", ":wincmd h<CR>", opts)
+keymap("n", "<c-j>", ":wincmd j<CR>", opts)
+keymap("n", "<c-k>", ":wincmd k<CR>", opts)
+keymap("n", "<c-l>", ":wincmd l<CR>", opts)
+keymap("n", "<c-tab>", "<c-6>", opts)
 
 keymap("n", "n", "nzz", opts)
 keymap("n", "N", "Nzz", opts)
