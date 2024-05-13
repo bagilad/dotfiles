@@ -23,6 +23,7 @@ spec "user.navic"
 spec "user.breadcrumbs"
 spec "user.oil"
 spec "user.neotest"
+spec "user.autopairs"
 -- Smooth scrolling
 spec "user.extras.neoscroll"
 -- Getting you where you want with the fewest keystrokes
