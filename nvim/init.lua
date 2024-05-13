@@ -24,6 +24,7 @@ spec "user.oil"
 spec "user.neotest"
 -- smooth scrolling
 spec "user.extras.neoscroll"
+-- Getting you where you want with the fewest keystrokes
 spec "user.extras.harpoon"
 spec "user.extras.eyeliner"
 -- tabbing in and out of brackets, parentheses, quotes, and more

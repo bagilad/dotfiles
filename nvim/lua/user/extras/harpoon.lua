@@ -1,5 +1,6 @@
 local M = {
   "ThePrimeagen/harpoon",
+  branch = "harpoon2",
   event = "VeryLazy",
   dependencies = {
     { "nvim-lua/plenary.nvim" },
@@ -9,14 +10,14 @@ local M = {
 function M.config()
   local keymap = vim.keymap.set
   local opts = { noremap = true, silent = true }
+  local harpoon = require("harpoon")
+  local function mark_file()
+    harpoon:list():add()
+    vim.notify "󱡅  marked file"
+  end
 
-  keymap("n", "<s-m>", "<cmd>lua require('user.extras.harpoon').mark_file()<cr>", opts)
-  keymap("n", "<TAB>", "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", opts)
-end
-
-function M.mark_file()
-  require("harpoon.mark").add_file()
-  vim.notify "󱡅  marked file"
+  keymap("n", "<s-m>", mark_file, opts)
+  keymap("n", "<TAB>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, opts)
 end
 
 return M
