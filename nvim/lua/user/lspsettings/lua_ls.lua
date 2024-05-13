@@ -30,9 +30,6 @@ return {
         semicolon = "All", -- "All" | "SameLine" | "Disable"
         setType = false,
       },
-      telemetry = {
-        enable = false,
-      },
     },
   },
 }

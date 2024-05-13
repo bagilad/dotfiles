@@ -67,7 +67,6 @@ function M.config()
 
   local servers = {
     "lua_ls",
-    "html",
     "marksman",
     "pyright",
     "ruff_lsp",
