@@ -24,6 +24,9 @@ spec "user.breadcrumbs"
 spec "user.oil"
 spec "user.neotest"
 spec "user.autopairs"
+-- Adds indentation guides
+-- spec "user.indentline"
+spec "user.indentscope"
 -- Smooth scrolling
 spec "user.extras.neoscroll"
 -- Getting you where you want with the fewest keystrokes
