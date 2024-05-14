@@ -11,28 +11,20 @@ spec "user.lspconfig"
 spec "user.cmp"
 spec "user.telescope"
 spec "user.none-ls"
--- Automatically highlighting other uses of the word under the cursor
-spec "user.illuminate"
+spec "user.illuminate" -- Automatically highlighting other uses of the word under the cursor
 spec "user.gitsigns"
 spec "user.whichkey"
 spec "user.nvimtree"
 spec "user.lualine"
--- Statusline/winbar component that uses LSP to show current code context
-spec "user.navic"
--- Works with nvim-navic to provide context about code in the winbar
-spec "user.breadcrumbs"
+spec "user.navic" -- Statusline/winbar component that uses LSP to show current code context
+spec "user.breadcrumbs" -- Works with nvim-navic to provide context about code in the winbar
 spec "user.oil"
 spec "user.neotest"
 spec "user.autopairs"
--- Adds indentation guides
--- spec "user.indentline"
+-- spec "user.indentline" -- Adds indentation guides
 spec "user.indentscope"
--- Smooth scrolling
-spec "user.extras.neoscroll"
--- Getting you where you want with the fewest keystrokes
-spec "user.extras.harpoon"
--- Move faster with unique f/F indicators for each word on the line
-spec "user.extras.eyeliner"
--- Tabbing in and out of brackets, parentheses, quotes, and more
-spec "user.extras.neotab"
+spec "user.extras.neoscroll" -- Smooth scrolling
+spec "user.extras.harpoon" -- Getting you where you want with the fewest keystrokes
+spec "user.extras.eyeliner" -- Move faster with unique f/F indicators for each word on the line
+spec "user.extras.neotab" -- Tabbing in and out of brackets, parentheses, quotes, and more
 require "user.lazy"
