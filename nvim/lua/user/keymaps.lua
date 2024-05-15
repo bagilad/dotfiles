@@ -1,52 +1,53 @@
-local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
+local keymap = function(mode, keys, func, desc)
+  vim.keymap.set(mode, keys, func, { silent = true, desc = desc })
+end
 
-keymap("n", "<Space>", "", opts)
+keymap("n", "<Space>", "", "")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Reason for this could be because on some terminals <C-i>
 -- and Tab codes are the same, so by this we avoid a remmapping
 -- of <C-i> when Tab is remmapped
-keymap("n", "<C-i>", "<C-i>", opts)
+keymap("n", "<C-i>", "<C-i>", "")
+
+-- Clear on pressing <Esc> in normal mode
+keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", "")
 
 -- Better window navigation
-keymap("n", "<c-h>", ":wincmd h<CR>", opts)
-keymap("n", "<c-j>", ":wincmd j<CR>", opts)
-keymap("n", "<c-k>", ":wincmd k<CR>", opts)
-keymap("n", "<c-l>", ":wincmd l<CR>", opts)
-keymap("n", "<c-tab>", "<c-6>", opts)
+keymap("n", "<c-h>", ":wincmd h<CR>", "")
+keymap("n", "<c-j>", ":wincmd j<CR>", "")
+keymap("n", "<c-k>", ":wincmd k<CR>", "")
+keymap("n", "<c-l>", ":wincmd l<CR>", "")
+keymap("n", "<c-tab>", "<c-6>", "")
 
-keymap("n", "n", "nzz", opts)
-keymap("n", "N", "Nzz", opts)
-keymap("n", "*", "*zz", opts)
-keymap("n", "#", "#zz", opts)
-keymap("n", "g*", "g*zz", opts)
-keymap("n", "g#", "g#zz", opts)
+keymap("n", "n", "nzz", "")
+keymap("n", "N", "Nzz", "")
+keymap("n", "*", "*zz", "")
+keymap("n", "#", "#zz", "")
+keymap("n", "g*", "g*zz", "")
+keymap("n", "g#", "g#zz", "")
 
 -- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
+keymap("v", "<", "<gv", "")
+keymap("v", ">", ">gv", "")
 
 -- Keeps the value in the register after pasting over another value
-keymap("x", "p", [["_dP]])
+keymap("x", "p", [["_dP]], "")
 
--- Mouse menu - probably won't use it
-vim.cmd [[:amenu 10.100 mousemenu.Goto\  <cmd>lua vim.lsp.buf.definition()<CR>]]
-vim.cmd [[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<CR>]]
--- vim.cmd [[:amenu 10.120 mousemenu.-sep- *]]
-
-vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
-vim.keymap.set("n", "<Tab>", "<cmd>:popup mousemenu<CR>")
+-- Diagnostic keymaps
+keymap("n", "[d", vim.diagnostic.goto_prev, "Go to previous diagnostic message")
+keymap("n", "]d", vim.diagnostic.goto_next, "Go to next diagnostic message")
+keymap("n", "<leader>d", vim.diagnostic.open_float, "Show diagnostic error messages")
+keymap("n", "<leader>q", vim.diagnostic.setloclist, "Open diagnostic quickfix list")
 
 -- more good
-keymap({ "n", "o", "x" }, "<s-h>", "^", opts)
-keymap({ "n", "o", "x" }, "<s-l>", "g_", opts)
+keymap({ "n", "o", "x" }, "<s-h>", "^", "")
+keymap({ "n", "o", "x" }, "<s-l>", "g_", "")
 
 -- tailwind bearable to work with
-keymap({ "n", "x" }, "j", "gj", opts)
-keymap({ "n", "x" }, "k", "gk", opts)
-keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
+keymap({ "n", "x" }, "j", "gj", "")
+keymap({ "n", "x" }, "k", "gk", "")
+keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", "")
 
-
-vim.api.nvim_set_keymap('t', '<C-;>', '<C-\\><C-n>', opts)
+keymap("t", "<C-;>", "<C-\\><C-n>", "")
