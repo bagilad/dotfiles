@@ -8,71 +8,47 @@ local M = {
   },
 }
 
-local function lsp_keymaps(bufnr)
-  local opts = { noremap = true, silent = true }
-  local keymap = vim.api.nvim_buf_set_keymap
-  keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-  keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-end
-
-M.on_attach = function(client, bufnr)
-  lsp_keymaps(bufnr)
-
-  if client.supports_method "textDocument/inlayHint" then
-    vim.lsp.inlay_hint.enable(true, { bufnr })
-  end
-end
-
 function M.common_capabilities()
+  -- LSP servers and clients are able to communicate to each other what features they support.
+  --  By default, Neovim doesn't support everything that is in the LSP specification.
+  --  When we add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
+  --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
   local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
   return capabilities
 end
 
-M.toggle_inlay_hints = function()
-  local bufnr = vim.api.nvim_get_current_buf()
-  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr }, { bufnr })
-end
-
 function M.config()
-  local wk = require "which-key"
-  wk.register {
-    ["<leader>la"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    ["<leader>lf"] = {
-      "<cmd>lua vim.lsp.buf.format({async = true, filter = function(client) return client.name ~= 'typescript-tools' end})<cr>",
-      "Format",
-    },
-    ["<leader>li"] = { "<cmd>LspInfo<cr>", "Info" },
-    ["<leader>lj"] = { "<cmd>lua vim.diagnostic.goto_next()<cr>", "Next Diagnostic" },
-    ["<leader>lh"] = { "<cmd>lua require('user.lspconfig').toggle_inlay_hints()<cr>", "Hints" },
-    ["<leader>lk"] = { "<cmd>lua vim.diagnostic.goto_prev()<cr>", "Prev Diagnostic" },
-    ["<leader>ll"] = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    ["<leader>lq"] = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
-    ["<leader>lr"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-  }
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+    callback = function(event)
+      local map = function(keys, func, desc)
+        vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+      end
+      map("gd", require("telescope.builtin").lsp_definitions, "Goto definition")
+      map("gD", vim.lsp.buf.declaration, "Goto declaration")
+      map("gr", require("telescope.builtin").lsp_references, "Goto references")
+      map("gI", require("telescope.builtin").lsp_implementations, "Goto implementation")
+      map("gl", vim.diagnostic.open_float, "Show diagnostics")
+      map("<leader>li", "<cmd>LspInfo<cr>", "Info")
+      map("<leader>lt", require("telescope.builtin").lsp_type_definitions, "Type definition")
+      map("<leader>ld", require("telescope.builtin").lsp_document_symbols, "Document symbols")
+      map("<leader>lw", require("telescope.builtin").lsp_dynamic_workspace_symbols, "Workspace symbols")
+      map("<leader>ll", vim.lsp.codelens.run, "CodeLens Action")
+      map("<leader>lr", vim.lsp.buf.rename, "Rename")
+      map("<leader>la", vim.lsp.buf.code_action, "Code action")
 
-  wk.register {
-    ["<leader>la"] = {
-      name = "LSP",
-      a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action", mode = "v" },
-    },
-  }
+      local client = vim.lsp.get_client_by_id(event.data.client_id)
+      if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+        map("<leader>th", function()
+          vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { event.buf }, { event.buf })
+        end, "Toggle inlay hints")
+      end
+    end,
+  })
 
-  local lspconfig = require "lspconfig"
+  -- Configure diagnostics appearance
   local icons = require "user.icons"
-
-  local servers = {
-    "lua_ls",
-    "marksman",
-    "pyright",
-    "ruff_lsp",
-    "bashls",
-    "jsonls",
-  }
 
   local default_diagnostic_config = {
     signs = {
@@ -103,14 +79,19 @@ function M.config()
   for _, sign in ipairs(vim.tbl_get(vim.diagnostic.config(), "signs", "values") or {}) do
     vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = sign.name })
   end
+  -- End diagnostics appearance
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
-  require("lspconfig.ui.windows").default_options.border = "rounded"
+  local servers = {
+    "lua_ls",
+    "marksman",
+    "pyright",
+    "ruff_lsp",
+    "bashls",
+    "jsonls",
+  }
 
   for _, server in pairs(servers) do
     local opts = {
-      on_attach = M.on_attach,
       capabilities = M.common_capabilities(),
     }
 
@@ -123,7 +104,7 @@ function M.config()
       require("neodev").setup {}
     end
 
-    lspconfig[server].setup(opts)
+    require("lspconfig")[server].setup(opts)
   end
 end
 
