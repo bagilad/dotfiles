@@ -2,7 +2,7 @@ local keymap = function(mode, keys, func, desc)
   vim.keymap.set(mode, keys, func, { silent = true, desc = desc })
 end
 
-keymap("n", "<Space>", "", "")
+ keymap("n", "<Space>", "", "")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 

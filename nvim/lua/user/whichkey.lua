@@ -7,7 +7,7 @@ function M.config()
     v = { "<cmd>vsplit<CR>", "Split" },
     b = { name = "Buffers" },
     d = { name = "Debug" },
-    f = { name = "Find" },
+    s = { name = "Search" },
     g = { name = "Git" },
     l = { name = "LSP" },
     p = { name = "Plugins" },

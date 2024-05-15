@@ -21,6 +21,7 @@ spec "user.breadcrumbs" -- Works with nvim-navic to provide context about code i
 spec "user.oil"
 spec "user.neotest"
 spec "user.autopairs"
+spec "user.conform" -- Formatting
 spec "user.extras.neoscroll" -- Smooth scrolling
 spec "user.extras.harpoon" -- Getting you where you want with the fewest keystrokes
 spec "user.extras.eyeliner" -- Move faster with unique f/F indicators for each word on the line
