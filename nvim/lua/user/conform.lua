@@ -29,7 +29,11 @@ return {
       -- Disable "format_on_save lsp_fallback" for languages that don't
       -- have a well standardized coding style.
       local ignore_filetypes = { "c", "cpp" }
-      if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+      if
+        vim.g.disable_autoformat
+        or vim.b[bufnr].disable_autoformat
+        or vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype)
+      then
         return
       end
       return {

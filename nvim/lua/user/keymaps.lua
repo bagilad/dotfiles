@@ -2,7 +2,7 @@ local keymap = function(mode, keys, func, desc)
   vim.keymap.set(mode, keys, func, { silent = true, desc = desc })
 end
 
- keymap("n", "<Space>", "", "")
+keymap("n", "<Space>", "", "")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -15,11 +15,11 @@ keymap("n", "<C-i>", "<C-i>", "")
 keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", "")
 
 -- Better window navigation
-keymap("n", "<c-h>", ":wincmd h<CR>", "")
-keymap("n", "<c-j>", ":wincmd j<CR>", "")
-keymap("n", "<c-k>", ":wincmd k<CR>", "")
-keymap("n", "<c-l>", ":wincmd l<CR>", "")
-keymap("n", "<c-tab>", "<c-6>", "")
+keymap("n", "<m-h>", ":wincmd h<CR>", "")
+keymap("n", "<m-j>", ":wincmd j<CR>", "")
+keymap("n", "<m-k>", ":wincmd k<CR>", "")
+keymap("n", "<m-l>", ":wincmd l<CR>", "")
+keymap("n", "<m-tab>", "<c-6>", "")
 
 keymap("n", "n", "nzz", "")
 keymap("n", "N", "Nzz", "")
