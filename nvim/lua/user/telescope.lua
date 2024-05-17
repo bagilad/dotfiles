@@ -7,13 +7,13 @@ function M.config()
   local builtin = require "telescope.builtin"
   local set = vim.keymap.set
   set("n", "<leader>bb", builtin.buffers, { desc = "Find" })
-  set("n", "<leader>sb", builtin.git_branches, { desc = "Git Branches" })
-  set("n", "<leader>sc", builtin.colorscheme, { desc = "Colorscheme" })
-  set("n", "<leader>sf", builtin.find_files, { desc = "Find Files" })
-  set("n", "<leader>st", builtin.live_grep, { desc = "Find Text" })
-  set("n", "<leader>sh", builtin.help_tags, { desc = "Help" })
-  set("n", "<leader>sl", builtin.resume, { desc = "Last Search" })
-  set("n", "<leader>sr", builtin.oldfiles, { desc = "Recent Files" })
+  set("n", "<leader>fb", builtin.git_branches, { desc = "Git Branches" })
+  set("n", "<leader>fc", builtin.colorscheme, { desc = "Colorscheme" })
+  set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
+  set("n", "<leader>ft", builtin.live_grep, { desc = "Find Text" })
+  set("n", "<leader>fh", builtin.help_tags, { desc = "Help" })
+  set("n", "<leader>fl", builtin.resume, { desc = "Last Search" })
+  set("n", "<leader>fr", builtin.oldfiles, { desc = "Recent Files" })
 
   local icons = require "user.icons"
   local actions = require "telescope.actions"

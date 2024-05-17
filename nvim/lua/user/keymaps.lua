@@ -45,9 +45,4 @@ keymap("n", "<leader>q", vim.diagnostic.setloclist, "Open diagnostic quickfix li
 keymap({ "n", "o", "x" }, "<s-h>", "^", "")
 keymap({ "n", "o", "x" }, "<s-l>", "g_", "")
 
--- tailwind bearable to work with
-keymap({ "n", "x" }, "j", "gj", "")
-keymap({ "n", "x" }, "k", "gk", "")
-keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", "")
-
 keymap("t", "<C-;>", "<C-\\><C-n>", "")

@@ -4,15 +4,15 @@ local M = {
 
 function M.config()
   local mappings = {
-    v = { "<cmd>vsplit<CR>", "Split" },
-    b = { name = "Buffers" },
-    d = { name = "Debug" },
-    s = { name = "Search" },
-    g = { name = "Git" },
-    l = { name = "LSP" },
-    p = { name = "Plugins" },
-    t = { name = "Toggle" },
-    T = { name = "Test" },
+    v = { "<cmd>vsplit<CR>", "v-split" },
+    b = { name = "Buffers", _ = "which_key_ignore" },
+    d = { name = "Debug", _ = "which_key_ignore" },
+    f = { name = "Find", _ = "which_key_ignore" },
+    g = { name = "Git", _ = "which_key_ignore" },
+    l = { name = "LSP", _ = "which_key_ignore" },
+    p = { name = "Plugins", _ = "which_key_ignore" },
+    t = { name = "toggle", _ = "which_key_ignore" },
+    T = { name = "Test", _ = "which_key_ignore" },
   }
 
   local which_key = require "which-key"
