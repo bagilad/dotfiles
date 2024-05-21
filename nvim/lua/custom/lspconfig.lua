@@ -60,49 +60,36 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local require_ok, cmp = pcall(require, "cmp_nvim_lsp")
-if require_ok then
-  capabilities = vim.tbl_deep_extend("force", capabilities, cmp.default_capabilities())
+local function get_capabilities()
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local require_ok, cmp = pcall(require, "cmp_nvim_lsp")
+  if require_ok then
+    capabilities = vim.tbl_deep_extend("force", capabilities, cmp.default_capabilities())
+  end
+  return capabilities
 end
 
 require("neodev").setup {}
 
 local servers = {
-  marksman = true,
-  pyright = true,
-  ruff_lsp = true,
-  bashls = true,
-  lua_ls = true,
-  jsonls = {
-    settings = {
-      json = {
-        schemas = require("schemastore").json.schemas(),
-        validate = { enable = true },
-      },
-    },
-  },
-  yamlls = {
-    settings = {
-      yaml = {
-        schemaStore = {
-          enable = false,
-          url = "",
-        },
-        schemas = require("schemastore").yaml.schemas(),
-      },
-    },
-  },
+  marksman = {},
+  pyright = {},
+  ruff_lsp = {},
+  bashls = {},
+  lua_ls = {},
+  jsonls = {},
+  yamlls = {},
 }
-
-local servers_to_install = vim.tbl_filter(function(key)
-  local t = servers[key]
-  if type(t) == "table" then
-    return not t.manual_install
-  else
-    return t
+local servers_to_install = {}
+for server, _ in pairs(servers) do
+  local require_ok, config = pcall(require, "custom.lspsettings." .. server)
+  if require_ok and type(config) == "table" then
+    servers[server] = config
+    if not config.manual_install then
+      table.insert(servers_to_install, server)
+    end
   end
-end, vim.tbl_keys(servers))
+end
 
 require("mason").setup()
 local ensure_installed = {
@@ -112,14 +99,10 @@ local ensure_installed = {
 vim.list_extend(ensure_installed, servers_to_install)
 require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
-for name, config in pairs(servers) do
-  if config == true then
-    config = {}
-  end
+local lspconfig = require "lspconfig"
+for server, config in pairs(servers) do
   config = vim.tbl_deep_extend("force", {}, {
-    capabilities = capabilities,
+    capabilities = get_capabilities(),
   }, config)
-
-  local lspconfig = require "lspconfig"
-  lspconfig[name].setup(config)
+  lspconfig[server].setup(config)
 end

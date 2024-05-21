@@ -6,13 +6,10 @@ return {
         enable = false,
       },
       diagnostics = {
-        globals = { "vim", "spec" },
+        globals = { "vim" },
       },
       runtime = {
         version = "LuaJIT",
-        special = {
-          spec = "require",
-        },
       },
       workspace = {
         checkThirdParty = false,
@@ -22,7 +19,7 @@ return {
         },
       },
       hint = {
-        enable = false,
+        enable = true,
         arrayIndex = "Disable", -- "Enable" | "Auto" | "Disable"
         await = true,
         paramName = "All", -- "All" | "Literal" | "Disable"
