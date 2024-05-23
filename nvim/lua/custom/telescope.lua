@@ -36,6 +36,10 @@ require("telescope").setup {
       initial_mode = "normal",
     },
 
+    corscheme = {
+      enable_preview = true,
+    },
+
     lsp_declarations = {
       initial_mode = "normal",
     },
