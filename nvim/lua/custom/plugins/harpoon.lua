@@ -2,45 +2,30 @@ local M = {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
   event = "VeryLazy",
-  dependencies = {
-    { "nvim-lua/plenary.nvim" },
-    { "nvim-telescope/telescope.nvim" },
-  },
+  dependencies = { "nvim-lua/plenary.nvim" },
 }
 
 function M.config()
-  local keymap = vim.keymap.set
-  local opts = { noremap = true, silent = true }
   local harpoon = require "harpoon"
   harpoon:setup()
 
-  -- basic telescope configuration
-  local conf = require("telescope.config").values
-  local function toggle_telescope(harpoon_files)
-    local file_paths = {}
-    for _, item in ipairs(harpoon_files.items) do
-      table.insert(file_paths, item.value)
-    end
-
-    require("telescope.pickers")
-      .new({}, {
-        prompt_title = "Harpoon",
-        finder = require("telescope.finders").new_table {
-          results = file_paths,
-        },
-        previewer = conf.file_previewer {},
-        sorter = conf.generic_sorter {},
-      })
-      :find()
-  end
-
-  keymap("n", "<s-m>", function()
+  local opts = { noremap = true, silent = true }
+  vim.keymap.set("n", "<s-m>", function()
     harpoon:list():add()
   end, opts)
+
   opts.desc = "Open harpoon window"
-  keymap("n", "<TAB>", function()
-    toggle_telescope(harpoon:list())
+  vim.keymap.set("n", "<TAB>", function()
+    harpoon.ui:toggle_quick_menu(harpoon:list())
   end, opts)
+
+  -- Set <space>1..<space>5 be my shortcuts to moving to the files
+  for _, idx in ipairs { 1, 2, 3, 4, 5 } do
+    opts.desc = "Move to file " .. idx
+    vim.keymap.set("n", string.format("<space>%d", idx), function()
+      harpoon:list():select(idx)
+    end)
+  end
 end
 
 return M
