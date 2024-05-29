@@ -26,11 +26,6 @@ config.adjust_window_size_when_changing_font_size = false
 config.window_frame = {
 	font = wezterm.font({ family = "Noto Sans", weight = "Regular" }),
 }
-config.colors = {
-	cursor_bg = "#5B6078",
-	cursor_border = "#5B6078",
-	cursor_fg = "black",
-}
 config.window_padding = {
 	left = 1,
 	right = 1,
