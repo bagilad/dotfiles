@@ -5,11 +5,6 @@ end
 -- Clear on pressing <Esc> in normal mode
 keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", "")
 
--- Better window navigation
-keymap("n", "<c-h>", ":wincmd h<CR>", "")
-keymap("n", "<c-j>", ":wincmd j<CR>", "")
-keymap("n", "<c-k>", ":wincmd k<CR>", "")
-keymap("n", "<c-l>", ":wincmd l<CR>", "")
 -- Toggle between two most recent buffers
 keymap("n", "<m-tab>", "<c-6>", "")
 
@@ -35,12 +30,6 @@ keymap("n", "[d", vim.diagnostic.goto_prev, "Go to previous diagnostic message")
 keymap("n", "]d", vim.diagnostic.goto_next, "Go to next diagnostic message")
 keymap("n", "<leader>d", vim.diagnostic.open_float, "Show diagnostic error messages")
 keymap("n", "<leader>q", vim.diagnostic.setloclist, "Open diagnostic quickfix list")
-
--- These mappings control the size of splits (height/width)
-keymap("n", "<M-h>", "<c-w>5<", "")
-keymap("n", "<M-l>", "<c-w>5>", "")
-keymap("n", "<M-j>", "<C-W>+", "")
-keymap("n", "<M-k>", "<C-W>-", "")
 
 -- more good
 keymap({ "n", "o", "x" }, "<s-h>", "^", "")

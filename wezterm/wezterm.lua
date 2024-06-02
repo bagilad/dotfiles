@@ -1,11 +1,10 @@
 local wezterm = require("wezterm")
-
+local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 local config = wezterm.config_builder()
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
 config.keys = {
-	-- splitting
 	{
 		mods = "LEADER",
 		key = "-",
@@ -15,6 +14,24 @@ config.keys = {
 		mods = "LEADER",
 		key = "=",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		mods = "LEADER",
+		key = "m",
+		action = wezterm.action.TogglePaneZoomState,
+	},
+	{
+		mods = "LEADER",
+		key = "Space",
+		action = wezterm.action.RotatePanes("Clockwise"),
+	},
+	-- show the pane selection mode, but have it swap the active and selected panes
+	{
+		mods = "LEADER",
+		key = "0",
+		action = wezterm.action.PaneSelect({
+			mode = "SwapWithActive",
+		}),
 	},
 }
 
@@ -32,4 +49,7 @@ config.window_padding = {
 	top = 1,
 	bottom = 1,
 }
+
+smart_splits.apply_to_config(config)
+
 return config
