@@ -35,6 +35,8 @@ config.keys = {
 	},
 }
 
+config.initial_cols = 150
+config.initial_rows = 50
 config.color_scheme = "Gruvbox Dark (Gogh)"
 config.font_size = 14.5
 config.window_decorations = "RESIZE"
