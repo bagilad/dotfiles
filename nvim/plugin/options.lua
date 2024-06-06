@@ -1,3 +1,4 @@
+local icons = require "custom.icons"
 local opt = vim.opt
 
 opt.backup = false -- creates a backup file
@@ -36,13 +37,19 @@ opt.signcolumn = "yes" -- always show the sign column, otherwise it would shift 
 opt.wrap = false -- display lines as one long line
 opt.scrolloff = 0
 opt.sidescrolloff = 8
-opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
 opt.title = false
 -- colorcolumn = "80",
--- colorcolumn = "120",
+opt.colorcolumn = "120"
 opt.fillchars = opt.fillchars + "eob: "
 opt.fillchars:append {
   stl = " ",
+}
+opt.list = true -- enable the below listchars
+opt.listchars = {
+  eol = icons.ui.EndOfLine,
+  tab = "▸ ",
+  trail = icons.ui.CenterDot,
+  nbsp = icons.ui.Space,
 }
 
 opt.shortmess:append "c"
