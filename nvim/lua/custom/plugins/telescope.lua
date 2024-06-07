@@ -7,7 +7,7 @@ return {
     "nvim-telescope/telescope-smart-history.nvim",
   },
   keys = {
-    { "<leader>bb", "<cmd>Telescope buffers()<cr>", desc = "Find" },
+    { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Find" },
     { "<leader>fb", "<cmd>Telescope git_branches<cr>", desc = "Git Branches" },
     { "<leader>fc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme" },
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },

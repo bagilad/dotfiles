@@ -1,5 +1,6 @@
 local M = {
   "nvimtools/none-ls.nvim",
+  event = { "BufReadPost", "BufNewFile", "BufWritePre" },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvimtools/none-ls-extras.nvim",
