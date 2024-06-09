@@ -10,7 +10,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   cp
   git
-  poetry
   docker
   zsh-autosuggestions
   zsh-syntax-highlighting
@@ -28,6 +27,7 @@ export VIMCONFIG="$HOME/.config/nvim"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)
 
 eval "$(rbenv init - zsh)"
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@3)"

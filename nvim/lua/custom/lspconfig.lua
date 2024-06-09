@@ -85,9 +85,9 @@ for server, _ in pairs(servers) do
   local require_ok, config = pcall(require, "custom.lspsettings." .. server)
   if require_ok and type(config) == "table" then
     servers[server] = config
-    if not config.manual_install then
-      table.insert(servers_to_install, server)
-    end
+  end
+  if not config.manual_install then
+    table.insert(servers_to_install, server)
   end
 end
 

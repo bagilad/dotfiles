@@ -4,6 +4,8 @@
 -- Primarily just download and execute lazy.nvim
 --]]
 vim.g.mapleader = " "
+vim.g.python3_host_prog = "/Users/gilad/.pyenv/versions/neovim/bin/python"
+vim.loader.enable()
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
@@ -20,8 +22,6 @@ end
 -- Add lazy to the `runtimepath`, this allows us to `require` it.
 ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
-
-vim.loader.enable()
 
 -- Set up lazy, and load my `lua/custom/plugins/` folder
 require("lazy").setup({ import = "custom/plugins" }, {
