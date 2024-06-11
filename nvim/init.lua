@@ -4,7 +4,7 @@
 -- Primarily just download and execute lazy.nvim
 --]]
 vim.g.mapleader = " "
-vim.g.python3_host_prog = "/Users/gilad/.pyenv/versions/neovim/bin/python"
+vim.g.python3_host_prog = vim.fn.expand "$HOME/.pyvenv/neovim/bin/python"
 vim.loader.enable()
 
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
