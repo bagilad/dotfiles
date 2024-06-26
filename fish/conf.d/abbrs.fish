@@ -1,8 +1,7 @@
 set -q MY_ABBRS_INITIALIZED; and return
 
 abbr -a -- - 'cd -'
-abbr -a -- vi nvim
-abbr -a -- vim nvim
+abbr -a -- v nvim
 abbr -a -- tarls 'tar -tvf'
 abbr -a -- untar 'tar -xv'
 abbr -a -- md 'mkdir -p'
@@ -10,6 +9,7 @@ abbr -a -- md 'mkdir -p'
 abbr -a -- c clear
 abbr -a -- h history
 
+abbr -a -- venv 'python -m venv .venv --prompt .'
 # quick nav
 abbr -a -- fconf 'cd $__fish_config_dir'
 abbr -a -- fishconf 'cd $__fish_config_dir'
