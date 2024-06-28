@@ -14,7 +14,7 @@ function M.config()
     debug = false,
     sources = {
       null_ls.builtins.formatting.stylua,
-      null_ls.builtins.completion.spell,
+      -- null_ls.builtins.completion.spell,
     },
   }
 end

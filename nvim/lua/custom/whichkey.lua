@@ -1,21 +1,30 @@
 local mappings = {
-  v = { "<cmd>vsplit<CR>", "v-split" },
-  b = { name = "Buffers", _ = "which_key_ignore" },
-  d = { name = "Debug", _ = "which_key_ignore" },
-  f = { name = "Find", _ = "which_key_ignore" },
-  g = { name = "Git", _ = "which_key_ignore" },
-  l = { name = "LSP", _ = "which_key_ignore" },
-  p = { name = "Plugins", _ = "which_key_ignore" },
-  t = { name = "Toggle", _ = "which_key_ignore" },
-  o = { name = "Open", _ = "which_key_ignore" },
-  T = { name = "Test", _ = "which_key_ignore" },
+  ["g"] = { name = "+goto" },
+  ["]"] = { name = "+next" },
+  ["["] = { name = "+prev" },
+  ["<leader>"] = {
+    v = { "<cmd>vsplit<CR>", "vertical split" },
+    b = { name = "+buffer" },
+    d = { name = "+debug" },
+    f = { name = "+file/find" },
+    s = { name = "+search" },
+    g = { name = "+git" },
+    gh = { name = "+hunks" },
+    l = { name = "+LSP" },
+    p = { name = "+plugins" },
+    t = { name = "+toggle" },
+    o = { name = "+open" },
+    T = { name = "+test" },
+    w = { name = "+window" },
+    x = { name = "+diagnostics/quickfix" },
+  },
 }
 
 local which_key = require "which-key"
 
 local opts = {
   mode = "n", -- NORMAL mode
-  prefix = "<leader>",
+  ignore_missing = true,
 }
 
 which_key.register(mappings, opts)

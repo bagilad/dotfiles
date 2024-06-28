@@ -37,7 +37,7 @@ config.keys = {
 
 config.initial_cols = 150
 config.initial_rows = 50
-config.color_scheme = "Gruvbox Dark (Gogh)"
+config.color_scheme = "Catppuccin Mocha"
 config.font_size = 14.5
 config.window_decorations = "RESIZE"
 -- config.hide_tab_bar_if_only_one_tab = true

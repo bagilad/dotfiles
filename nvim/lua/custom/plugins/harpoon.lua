@@ -24,7 +24,7 @@ function M.config()
     opts.desc = "Move to file " .. idx
     vim.keymap.set("n", string.format("<space>%d", idx), function()
       harpoon:list():select(idx)
-    end)
+    end, { desc = "which_key_ignore" })
   end
 end
 

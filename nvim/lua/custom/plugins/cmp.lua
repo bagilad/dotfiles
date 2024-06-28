@@ -75,6 +75,7 @@ M.config = function()
       { name = "luasnip" },
       { name = "nvim_lua" },
       { name = "buffer" },
+      { name = "spell" },
       { name = "path" },
       { name = "emoji" },
     },
