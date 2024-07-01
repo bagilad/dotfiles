@@ -5,8 +5,8 @@ end
 -- Clear on pressing <Esc> in normal mode
 keymap("n", "<Esc>", "<cmd>nohlsearch<CR>", "")
 
--- Toggle between two most recent buffers
-keymap("n", "<m-tab>", "<c-6>", "")
+-- Save file
+keymap({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", "Save File")
 
 keymap("n", "n", "nzz", "")
 keymap("n", "N", "Nzz", "")

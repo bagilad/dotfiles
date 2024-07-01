@@ -45,12 +45,12 @@ config.adjust_window_size_when_changing_font_size = false
 config.window_frame = {
 	font = wezterm.font({ family = "Noto Sans", weight = "Regular" }),
 }
-config.window_padding = {
-	left = 1,
-	right = 1,
-	top = 1,
-	bottom = 1,
-}
+-- config.window_padding = {
+-- 	left = 2,
+-- 	right = 2,
+-- 	top = 1,
+-- 	bottom = 1,
+-- }
 
 smart_splits.apply_to_config(config)
 
