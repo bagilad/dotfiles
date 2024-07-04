@@ -79,6 +79,7 @@ local servers = {
   lua_ls = {},
   jsonls = {},
   yamlls = {},
+  rust_analyzer = {},
 }
 local servers_to_install = {}
 for server, _ in pairs(servers) do
