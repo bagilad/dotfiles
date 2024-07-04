@@ -11,6 +11,6 @@ return {
     },
   },
   config = function()
-    require "custom.lspconfig"
+    require "config.lspconfig"
   end,
 }

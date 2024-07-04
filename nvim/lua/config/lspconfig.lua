@@ -1,5 +1,5 @@
 -- Configure diagnostics appearance
-local icons = require "custom.icons"
+local icons = require "config.icons"
 
 local default_diagnostic_config = {
   signs = {
@@ -83,7 +83,7 @@ local servers = {
 }
 local servers_to_install = {}
 for server, _ in pairs(servers) do
-  local require_ok, config = pcall(require, "custom.lspsettings." .. server)
+  local require_ok, config = pcall(require, "config.lspsettings." .. server)
   if require_ok and type(config) == "table" then
     servers[server] = config
   end

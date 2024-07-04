@@ -1,4 +1,4 @@
-local icons = require "custom.icons"
+local icons = require "config.icons"
 local opt = vim.opt
 
 opt.backup = false -- creates a backup file
