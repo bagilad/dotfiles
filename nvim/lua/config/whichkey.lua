@@ -6,13 +6,12 @@ local mappings = {
     v = { "<cmd>vsplit<CR>", "vertical split" },
     b = { name = "+buffer" },
     d = { name = "+debug" },
-    f = { name = "+file/find" },
     s = { name = "+search" },
     g = { name = "+git" },
-    gh = { name = "+hunks" },
-    l = { name = "+LSP" },
+    -- gh = { name = "+hunks", ["_"] = "which_key_ignore" },
+    l = { name = "+LSP", ["_"] = "which_key_ignore" },
     p = { name = "+plugins" },
-    t = { name = "+toggle" },
+    t = { name = "+toggle", ["_"] = "which_key_ignore" },
     o = { name = "+open" },
     T = { name = "+test" },
     w = { name = "+window" },
@@ -24,7 +23,6 @@ local which_key = require "which-key"
 
 local opts = {
   mode = "n", -- NORMAL mode
-  ignore_missing = true,
 }
 
 which_key.register(mappings, opts)

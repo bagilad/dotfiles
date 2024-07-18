@@ -24,4 +24,6 @@ vim.g.maplocalleader = "\\"
 vim.g.python3_host_prog = vim.fn.expand "$HOME/.pyvenv/neovim/bin/python"
 vim.loader.enable()
 
-require("lazy").setup "plugins"
+require("lazy").setup("plugins", { change_detection = {
+  notify = false,
+} })

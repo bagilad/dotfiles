@@ -7,16 +7,18 @@ return {
     "nvim-telescope/telescope-smart-history.nvim",
   },
   keys = {
-    { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Find" },
+    { "<leader>bb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Find" },
     { "<leader>sb", "<cmd>Telescope git_branches<cr>", desc = "Git Branches" },
     { "<leader>sc", "<cmd>Telescope colorscheme<cr>", desc = "Colorscheme" },
-    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-    { "<leader>st", "<cmd>Telescope live_grep<cr>", desc = "Find Text" },
+    { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+    { "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
+    { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Grep" },
     { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help" },
     { "<leader>sl", "<cmd>Telescope resume<cr>", desc = "Last Search" },
-    { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
+    { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
+    { "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
     {
-      "<leader>fc",
+      "<leader>sc",
       function()
         require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config" }
       end,

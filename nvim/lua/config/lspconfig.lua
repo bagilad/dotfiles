@@ -73,6 +73,8 @@ require("neodev").setup {}
 
 local servers = {
   marksman = {},
+  tsserver = {},
+  eslint = {},
   pyright = {},
   ruff_lsp = {},
   bashls = {},
