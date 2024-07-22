@@ -57,6 +57,9 @@ opt.shortmess:append "c"
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 
+opt.spelllang = "en_us"
+opt.spell = true
+
 -- Folding
 opt.foldmethod = "expr"
 opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
