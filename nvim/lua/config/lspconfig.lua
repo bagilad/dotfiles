@@ -97,6 +97,7 @@ end
 require("mason").setup()
 local ensure_installed = {
   "stylua",
+  "prettier",
 }
 
 vim.list_extend(ensure_installed, servers_to_install)
