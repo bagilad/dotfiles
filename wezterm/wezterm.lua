@@ -38,19 +38,13 @@ config.keys = {
 config.initial_cols = 150
 config.initial_rows = 50
 config.color_scheme = "Catppuccin Macchiato"
-config.font_size = 14.5
+config.font_size = 15
 config.window_decorations = "RESIZE"
 -- config.hide_tab_bar_if_only_one_tab = true
 config.adjust_window_size_when_changing_font_size = false
 config.window_frame = {
 	font = wezterm.font({ family = "Noto Sans", weight = "Regular" }),
 }
--- config.window_padding = {
--- 	left = 2,
--- 	right = 2,
--- 	top = 1,
--- 	bottom = 1,
--- }
 
 smart_splits.apply_to_config(config)
 

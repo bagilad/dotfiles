@@ -1,1 +1,30 @@
+# Ignore Fish shell state files and variables
 fish_variables
+
+# Ignore plugin and package manager files
+fish_plugins
+
+# Ignore all generated functions and files (usually created by plugins)
+functions/_*.fish
+functions/_*.sh
+conf.d/_*.fish
+conf.d/_*.sh
+
+# Ignore specific plugin-related files (Fisher, Tide, etc.)
+completions/_*.fish
+functions/fish_prompt.fish
+functions/fish_mode_prompt.fish
+functions/tide/
+functions/sdk.fish
+functions/fisher.fish
+functions/tide.fish
+conf.d/sdk.fish
+
+# Ignore completions that are symlinked or generated
+completions/asdf.fish
+completions/fisher.fish
+completions/sdk.fish
+completions/tide.fish
+
+# Ignore temporary or build artifacts created by plugins or themes
+themes/

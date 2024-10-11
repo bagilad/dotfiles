@@ -93,7 +93,7 @@
 	pager = cat
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	editor = nvim
-	excludesfile = /Users/giladba/.gitignore_global
+	excludesfile = /Users/gilad/.gitignore_global
 
 [apply]
   whitespace = fix
@@ -101,3 +101,5 @@
 	templatedir = ~/.git_template
 [credential]
 	helper = cache
+[push]
+	autoSetupRemote = true
