@@ -75,6 +75,8 @@
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
   bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
 	ll = log --graph --format=\"%C(yellow)%h%C(red)%d%C(reset) - %C(bold green)(%ar)%C(reset) %s %C(blue)<%an>%C(reset)\"
+  sw = switch
+  swc = switch -c
 
 [diff]
   tool = diffmerge

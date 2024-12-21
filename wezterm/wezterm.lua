@@ -37,7 +37,7 @@ config.keys = {
 
 config.initial_cols = 150
 config.initial_rows = 50
-config.color_scheme = "Catppuccin Macchiato"
+config.color_scheme = "Catppuccin Frappe"
 config.font_size = 15
 config.window_decorations = "RESIZE"
 -- config.hide_tab_bar_if_only_one_tab = true
@@ -45,6 +45,15 @@ config.adjust_window_size_when_changing_font_size = false
 config.window_frame = {
 	font = wezterm.font({ family = "Noto Sans", weight = "Regular" }),
 }
+
+for i = 1, 8 do
+	-- CTRL+ALT + number to move to that position
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "CTRL|ALT",
+		action = wezterm.action.MoveTab(i - 1),
+	})
+end
 
 smart_splits.apply_to_config(config)
 

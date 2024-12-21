@@ -31,3 +31,9 @@ set -g ZDOTDIR $XDG_CONFIG_HOME/zsh
 set -gx DOTFILES $HOME/.dotfiles
 set -gx PROJECTS_DIR $HOME/projects
 
+# Set SDKROOT to the macOS SDK path
+set -x SDKROOT (xcrun --sdk macosx --show-sdk-path)
+# Set the C++ include path
+set -x CPLUS_INCLUDE_PATH "$SDKROOT/usr/include/c++/v1"
+# Set the compiler flags
+set -x CXXFLAGS "-isysroot $SDKROOT -I$SDKROOT/usr/include -I$SDKROOT/usr/include/c++/v1"
