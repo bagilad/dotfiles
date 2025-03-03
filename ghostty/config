@@ -1,0 +1,5 @@
+theme = catppuccin-macchiato
+font-size = 14
+copy-on-select = clipboard
+macos-titlebar-style = transparent
+macos-option-as-alt = true

@@ -37,3 +37,5 @@ set -x SDKROOT (xcrun --sdk macosx --show-sdk-path)
 set -x CPLUS_INCLUDE_PATH "$SDKROOT/usr/include/c++/v1"
 # Set the compiler flags
 set -x CXXFLAGS "-isysroot $SDKROOT -I$SDKROOT/usr/include -I$SDKROOT/usr/include/c++/v1"
+
+set FZF_DEFAULT_OPTS "--layout=reverse --border=round --margin=3% --color=dark"
