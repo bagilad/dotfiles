@@ -86,6 +86,7 @@
 
 [merge]
   tool = diffmerge
+  cnflictstyle=diff3
 
 [mergetool "diffmerge"]
   cmd = "diffmerge" -3 -merge -wait "$LOCAL" "$BASE" "$REMOTE" "$MERGED"

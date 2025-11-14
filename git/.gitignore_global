@@ -45,3 +45,4 @@ patches/**
 env/**
 .venv/**
 .python-version
+.zed/**
