@@ -12,3 +12,6 @@ type -q fzf; and fzf --fish | source
 
 type -q zoxide; and zoxide init fish | source
 type -q starship; and starship init fish | source
+
+# Added by Antigravity
+fish_add_path /Users/gilad/.antigravity/antigravity/bin

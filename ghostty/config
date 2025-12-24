@@ -3,4 +3,5 @@ font-family = "JetBrains Mono"
 font-size = 14
 copy-on-select = clipboard
 macos-titlebar-style = transparent
+command = /opt/homebrew/bin/fish
 keybind = shift+enter=text:\n
