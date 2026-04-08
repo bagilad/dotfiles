@@ -103,6 +103,6 @@
 [init]
 	templatedir = ~/.git_template
 [credential]
-	helper = cache
+	helper = osxkeychain
 [push]
 	autoSetupRemote = true
