@@ -5,11 +5,12 @@ vim.g.mapleader = ' ' -- must be set before plugins/mappings
 vim.pack.add({
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/stevearc/conform.nvim',
-  'https://github.com/folke/tokyonight.nvim',
-  'https://github.com/catppuccin/nvim',
+  -- 'https://github.com/folke/tokyonight.nvim',
+  -- 'https://github.com/catppuccin/nvim',
   'https://github.com/rebelot/kanagawa.nvim',
   'https://github.com/ibhagwan/fzf-lua',
   'https://github.com/lewis6991/gitsigns.nvim',
+  'https://github.com/echasnovski/mini.files',
 })
 
 -- vim.cmd.colorscheme('tokyonight')
@@ -42,6 +43,14 @@ vim.lsp.config('vtsls', {
 })
 
 vim.lsp.enable('vtsls')
+
+vim.lsp.config('eslint', {
+  settings = {
+    workingDirectory = { mode = 'auto' },
+  },
+})
+
+vim.lsp.enable('eslint')
 
 -- FORMATTING -----------------------------------------------------------------
 
@@ -93,6 +102,10 @@ vim.opt.grepprg = 'rg --vimgrep --no-messages --smart-case'
 vim.o.splitbelow = true
 vim.o.splitright = true
 
+-- FILES ----------------------------------------------------------------------
+
+require('mini.files').setup()
+
 -- GIT ------------------------------------------------------------------------
 
 require('gitsigns').setup({ current_line_blame = true })
@@ -100,6 +113,10 @@ require('gitsigns').setup({ current_line_blame = true })
 -- KEYMAPS --------------------------------------------------------------------
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<cr>', { desc = 'Clear search highlight' })
+
+vim.keymap.set('n', '<leader>e', function()
+  require('mini.files').open(vim.api.nvim_buf_get_name(0))
+end, { desc = 'File explorer' })
 
 -- Diagnostic
 vim.keymap.set('n', ']d', function()
@@ -110,6 +127,16 @@ vim.keymap.set('n', '[d', function()
 end, { desc = 'Prev diagnostic' })
 
 vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = 'Diagnostic float' })
+vim.keymap.set('n', '<leader>le', function()
+  vim.lsp.buf.code_action({
+    apply = true,
+    context = {
+      ---@diagnostic disable-next-line: assign-type-mismatch
+      only = { 'source.fixAll.eslint' },
+      diagnostics = {},
+    },
+  })
+end, { desc = 'ESLint fix all' })
 
 -- Fuzzy Finder
 vim.keymap.set('n', '<leader>ff', '<cmd>FzfLua files<cr>', { desc = 'Find files' })
@@ -117,9 +144,6 @@ vim.keymap.set('n', '<leader>fg', '<cmd>FzfLua live_grep<cr>', { desc = 'Live gr
 vim.keymap.set('n', '<leader>fb', '<cmd>FzfLua buffers<cr>', { desc = 'Buffers' })
 vim.keymap.set('n', '<leader>fh', '<cmd>FzfLua help_tags<cr>', { desc = 'Help tags' })
 vim.keymap.set('n', '<leader>fd', '<cmd>FzfLua diagnostics_workspace<cr>', { desc = 'Diagnostics workspace' })
-
-vim.keymap.set('i', '<C-Space>', vim.lsp.completion.get, { desc = 'Trigger completion' })
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
 
 -- Gitsigns
 vim.keymap.set('n', ']h', '<cmd>Gitsigns next_hunk<cr>', { desc = 'Next hunk' })
@@ -162,6 +186,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
         callback = vim.lsp.buf.clear_references,
       })
     end
+    local map = function(key, fn, desc)
+      vim.keymap.set('n', key, fn, { buffer = args.buf, desc = desc })
+    end
+    map('K', vim.lsp.buf.hover, 'Hover')
+    map('gd', '<cmd>FzfLua lsp_definitions<cr>', 'Go to definition')
+    map('gr', '<cmd>FzfLua lsp_references<cr>', 'References')
+    map('gi', vim.lsp.buf.implementation, 'Go to implementation')
+    map('<leader>lr', vim.lsp.buf.rename, 'Rename')
+    map('<leader>la', vim.lsp.buf.code_action, 'Code action')
+    map('<leader>ls', '<cmd>FzfLua lsp_workspace_symbols<cr>', 'Workspace symbols')
+    vim.keymap.set('i', '<C-Space>', vim.lsp.completion.get, { buffer = args.buf, desc = 'Trigger completion' })
   end,
 })
 
