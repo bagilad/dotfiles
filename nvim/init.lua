@@ -11,6 +11,8 @@ vim.pack.add({
   'https://github.com/ibhagwan/fzf-lua',
   'https://github.com/lewis6991/gitsigns.nvim',
   'https://github.com/echasnovski/mini.files',
+  'https://github.com/neovim-treesitter/treesitter-parser-registry',
+  'https://github.com/neovim-treesitter/nvim-treesitter',
 })
 
 -- vim.cmd.colorscheme('tokyonight')
@@ -52,6 +54,18 @@ vim.lsp.config('eslint', {
 
 vim.lsp.enable('eslint')
 
+vim.lsp.enable('prismals')
+
+vim.lsp.config('yamlls', {
+  settings = {
+    yaml = {
+      schemaStore = { enable = true, url = 'https://www.schemastore.org/api/json/catalog.json' },
+      validate = true,
+    },
+  },
+})
+vim.lsp.enable('yamlls')
+
 -- FORMATTING -----------------------------------------------------------------
 
 require('conform').setup({
@@ -61,6 +75,8 @@ require('conform').setup({
     javascript = { 'prettier' },
     typescriptreact = { 'prettier' },
     javascriptreact = { 'prettier' },
+    yaml = { 'prettier' },
+    prisma = { 'prisma' },
   },
   format_on_save = {
     timeout_ms = 500,
@@ -89,8 +105,9 @@ vim.o.undofile = true
 vim.o.swapfile = false
 vim.o.confirm = true
 
+vim.opt.autocomplete = true
 vim.opt.complete:prepend('o')
-vim.opt.completeopt:append({ 'menuone', 'noselect' })
+vim.opt.completeopt:append({ 'menuone', 'fuzzy', 'noselect', 'popup' })
 
 -- Search
 vim.o.ignorecase = true

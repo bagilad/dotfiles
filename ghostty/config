@@ -1,5 +1,5 @@
 theme = "TokyoNight Storm"
-font-size = 14
+font-size = 14.5
 copy-on-select = clipboard
 macos-option-as-alt = true
 macos-titlebar-style = transparent
