@@ -13,6 +13,7 @@ vim.pack.add({
   'https://github.com/echasnovski/mini.files',
   'https://github.com/neovim-treesitter/treesitter-parser-registry',
   'https://github.com/neovim-treesitter/nvim-treesitter',
+  'https://github.com/nvim-treesitter/nvim-treesitter-context',
 })
 
 -- vim.cmd.colorscheme('tokyonight')
@@ -119,6 +120,14 @@ vim.opt.grepprg = 'rg --vimgrep --no-messages --smart-case'
 vim.o.splitbelow = true
 vim.o.splitright = true
 
+-- TREESITTER ------------------------------------------------------------------
+
+require('treesitter-context').setup({
+  max_lines = 3,
+  multiline_threshold = 1,
+  separator = '-',
+})
+
 -- FILES ----------------------------------------------------------------------
 
 require('mini.files').setup()
@@ -167,6 +176,10 @@ vim.keymap.set('n', ']h', '<cmd>Gitsigns next_hunk<cr>', { desc = 'Next hunk' })
 vim.keymap.set('n', '[h', '<cmd>Gitsigns prev_hunk<cr>', { desc = 'Prev hunk' })
 vim.keymap.set('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<cr>', { desc = 'Preview hunk' })
 vim.keymap.set('n', '<leader>gr', '<cmd>Gitsigns reset_hunk<cr>', { desc = 'Reset hunk' })
+
+vim.keymap.set('n', '[c', function()
+  require('treesitter-context').go_to_context(vim.v.count1)
+end, { silent = true, desc = 'Go to context' })
 
 -- AUTOCOMMANDS ---------------------------------------------------------------
 
