@@ -102,6 +102,7 @@
   whitespace = fix
 [init]
 	templatedir = ~/.git_template
+	defaultBranch = main
 [credential]
 	helper = osxkeychain
 [push]
