@@ -21,3 +21,14 @@ end
 function fish_clipboard_paste
     pbpaste
 end
+
+# pnpm
+set -gx PNPM_HOME "/Users/gilad/.local/share/pnpm"
+if not string match -q -- "$PNPM_HOME/bin" $PATH
+  set -gx PATH "$PNPM_HOME/bin" $PATH
+end
+# pnpm end
+
+if status is-interactive
+    atuin init fish | source
+end
