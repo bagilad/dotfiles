@@ -10,10 +10,12 @@ vim.pack.add({
   'https://github.com/rebelot/kanagawa.nvim',
   'https://github.com/ibhagwan/fzf-lua',
   'https://github.com/lewis6991/gitsigns.nvim',
-  'https://github.com/echasnovski/mini.files',
+  'https://github.com/nvim-mini/mini.files',
+  'https://github.com/nvim-mini/mini.icons',
   'https://github.com/neovim-treesitter/treesitter-parser-registry',
   'https://github.com/neovim-treesitter/nvim-treesitter',
   'https://github.com/nvim-treesitter/nvim-treesitter-context',
+  'https://github.com/MeanderingProgrammer/render-markdown.nvim',
 })
 
 -- vim.cmd.colorscheme('tokyonight')
