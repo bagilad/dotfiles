@@ -5,3 +5,4 @@ macos-option-as-alt = true
 macos-titlebar-style = transparent
 command = /opt/homebrew/bin/fish
 keybind = shift+enter=text:\n
+auto-update-channel = tip
